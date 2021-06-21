@@ -23,8 +23,7 @@ fill-out--list-your-endpoints-and-why-they-exist
 
 This app requires the following to be installed to be able to run locally.
 
-- [Node](https://www.nodejs.org) (version 14.x.x)
-- fillout--any-other-requirements
+- [Node](https://www.nodejs.org) (version 16.x.x)
 
 ## :running: Running locally
 
