@@ -1,7 +1,7 @@
 {
-  "name": "fill-out--your-package-name",
+  "name": "moc-tod-tf",
   "version": "0.0.0",
-  "description": "fill-out--your-description",
+  "description": "Backwards ft.com",
   "main": "server/init.js",
   "scripts": {
     "lint": "npm run -s lint:syntax && npm run -s lint:types",
@@ -18,7 +18,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/keirog/fill-out--your-repo-name.git"
+    "url": "git+https://github.com/leafrogers/moc-tod-tf.git"
   },
   "license": "MIT",
   "dependencies": {
