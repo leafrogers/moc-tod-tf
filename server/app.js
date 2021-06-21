@@ -16,10 +16,15 @@ app.get('/', (_, res, next) => {
 			throw new Error(`Nah: ${res.status}`);
 		})
 		.then((html) => {
-			const toSend = (html || '').replace(
-				'overflow-x:hidden;',
-				'overflow-x:hidden;transform:scaleX(-1);'
-			);
+			const toSend = (html || '')
+				.replace(
+					'overflow-x:hidden;',
+					'overflow-x:hidden;transform:scaleX(-1);'
+				)
+				.replace(
+					'Financial Times',
+					'Financial Times'.split('').reverse().join('')
+				);
 			res.set('Content-Type', 'text/html');
 			res.send(toSend);
 		})
