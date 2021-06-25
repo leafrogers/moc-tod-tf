@@ -1,6 +1,7 @@
 import express from 'express';
 import helmet from 'helmet';
 import fetch from 'node-fetch';
+import replaceImages from './helpers/replace-images.js';
 
 const app = express();
 
@@ -20,7 +21,11 @@ const fetchFtHomepage = async () => {
  * @param {string} htmlString
  */
 const reversifyHtml = (htmlString) => {
-	return (htmlString || '')
+	const html = replaceImages({
+		htmlString
+	});
+
+	return (html || '')
 		.replace('overflow-x:hidden;', 'overflow-x:hidden;transform:scaleX(-1);')
 		.replace('Financial Times', 'Financial Times'.split('').reverse().join(''));
 };
