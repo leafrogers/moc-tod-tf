@@ -6,28 +6,29 @@ const app = express();
 
 app.use(helmet());
 
-app.get('/', (_, res, next) => {
-	fetch('https://www.ft.com/?format=html')
-		.then((ftResponse) => {
-			if (ftResponse.ok) {
-				return ftResponse.text();
-			}
+const fetchFtHomepage = async () => {
+	const response = await fetch('https://www.ft.com/?format=html');
 
-			throw new Error(`Nah: ${res.status}`);
-		})
-		.then((html) => {
-			const toSend = (html || '')
-				.replace(
-					'overflow-x:hidden;',
-					'overflow-x:hidden;transform:scaleX(-1);'
-				)
-				.replace(
-					'Financial Times',
-					'Financial Times'.split('').reverse().join('')
-				);
-			res.set('Content-Type', 'text/html');
-			res.send(toSend);
-		})
+	if (response.ok) {
+		return response.text();
+	}
+
+	throw new Error(`Error fetching FT homepage: ${response.status}`);
+};
+
+/**
+ * @param {string} htmlString
+ */
+const reversifyHtml = (htmlString) => {
+	return (htmlString || '')
+		.replace('overflow-x:hidden;', 'overflow-x:hidden;transform:scaleX(-1);')
+		.replace('Financial Times', 'Financial Times'.split('').reverse().join(''));
+};
+
+app.get('/', (_, res, next) => {
+	fetchFtHomepage()
+		.then(reversifyHtml)
+		.then((html) => res.send(html))
 		.catch(next);
 });
 
