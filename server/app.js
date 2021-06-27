@@ -31,8 +31,11 @@ app.use(
 	})
 );
 
-const fetchFtHomepage = async () => {
-	const response = await fetch('https://www.ft.com/?format=html');
+/**
+ * @param {string} ftUrlPath
+ */
+const fetchFtPage = async (ftUrlPath) => {
+	const response = await fetch(`https://www.ft.com${ftUrlPath}?format=html`);
 
 	if (response.ok) {
 		return response.text();
@@ -50,8 +53,8 @@ const reversifyHtml = (htmlString) => {
 		.replace('Financial Times', 'Financial Times'.split('').reverse().join(''));
 };
 
-app.get('/', (_, res, next) => {
-	fetchFtHomepage()
+app.get('*', (req, res, next) => {
+	fetchFtPage(req.url)
 		.then(reversifyHtml)
 		.then((html) => res.send(html))
 		.catch(next);
