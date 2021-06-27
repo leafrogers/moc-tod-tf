@@ -24,7 +24,7 @@ app.use(
 				'media-src': ["'self'"],
 				'object-src': ["'none'"],
 				'script-src': ["'self'", 'https://polyfill.io', 'https://www.ft.com'],
-				'style-src': ["'self'", 'https://www.ft.com'],
+				'style-src': ["'unsafe-inline'", 'https://www.ft.com'],
 				'worker-src': ["'none'"]
 			}
 		}
@@ -46,7 +46,7 @@ const fetchFtHomepage = async () => {
  */
 const reversifyHtml = (htmlString) => {
 	return (htmlString || '')
-		.replace('overflow-x:hidden;', 'overflow-x:hidden;transform:scaleX(-1);" ')
+		.replace('overflow-x:hidden;', 'overflow-x:hidden;transform:scaleX(-1);')
 		.replace('Financial Times', 'Financial Times'.split('').reverse().join(''));
 };
 
