@@ -1,11 +1,37 @@
 import express from 'express';
 import helmet from 'helmet';
 import fetch from 'node-fetch';
+// import replaceFtHrefsWithTf from './helpers/replace-ft-hrefs-with-tf.js';
 import replaceImages from './helpers/replace-images.js';
 
 const app = express();
 
-app.use(helmet());
+app.use(
+	helmet({
+		contentSecurityPolicy: {
+			useDefaults: true,
+			directives: {
+				'base-uri': ["'self'"],
+				'connect-src': ["'self'"],
+				'default-src': ["'self'"],
+				'font-src': ["'self'", 'https://www.ft.com'],
+				'frame-src': ["'self'"],
+				'img-src': [
+					"'self'",
+					'data: http://prod-upp-image-read.ft.com',
+					'https://d1e00ek4ebabms.cloudfront.net',
+					'https://www.ft.com '
+				],
+				'manifest-src': ["'self'", 'https://www.ft.com'],
+				'media-src': ["'self'"],
+				'object-src': ["'none'"],
+				'script-src': ["'self'", 'https://polyfill.io', 'https://www.ft.com'],
+				'style-src': ["'self'", 'https://www.ft.com'],
+				'worker-src': ["'none'"]
+			}
+		}
+	})
+);
 
 const fetchFtHomepage = async () => {
 	const response = await fetch('https://www.ft.com/?format=html');
