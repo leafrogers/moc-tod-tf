@@ -35,7 +35,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.4.0",
     "husky": "^6.0.0",
-    "jest": "^27.0.4",
+    "jest": "^27.1.1",
     "nodemon": "^2.0.4",
     "prettier": "^2.2.1",
     "supertest": "^6.1.1",
