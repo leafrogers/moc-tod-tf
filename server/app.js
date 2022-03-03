@@ -6,6 +6,7 @@ const app = express();
 
 app.use(
 	helmet({
+		//contentSecurityPolicy: false,
 		contentSecurityPolicy: {
 			useDefaults: true,
 			directives: {
@@ -23,11 +24,18 @@ app.use(
 				'manifest-src': ["'self'", 'https://www.ft.com'],
 				'media-src': ["'self'"],
 				'object-src': ["'none'"],
-				'script-src': ["'self'", 'https://polyfill.io', 'https://www.ft.com'],
+				'script-src': [
+					"'self'",
+					"'unsafe-eval'",
+					"'unsafe-inline'",
+					'https://polyfill.io',
+					'https://www.ft.com'
+				],
 				'style-src': ["'unsafe-inline'", 'https://www.ft.com'],
 				'worker-src': ["'none'"]
 			}
-		}
+		},
+		crossOriginEmbedderPolicy: false
 	})
 );
 
@@ -41,14 +49,14 @@ const fetchFtPage = async (ftUrlPath) => {
 		return response.text();
 	}
 
-	throw new Error(`Error fetching FT homepage: ${response.status}`);
+	throw new Error(`Error fetching FT page: ${response.status}`);
 };
 
 /**
  * @param {string} htmlString
  */
 const reversifyHtml = (htmlString) => {
-	return (htmlString || '')
+	return htmlString
 		.replace('overflow-x:hidden;', 'overflow-x:hidden;transform:scaleX(-1);')
 		.replace('Financial Times', 'Financial Times'.split('').reverse().join(''));
 };
