@@ -4,10 +4,36 @@ module.exports = {
 		'plugin:node/recommended',
 		'plugin:prettier/recommended'
 	],
+	overrides: [
+		{
+			files: ['client/**/*.js', 'shared/**/*.js'],
+			env: {
+				browser: true
+			}
+		},
+		{
+			files: ['**/*.test.js'],
+			env: {
+				jest: true
+			},
+			extends: ['plugin:jest/recommended'],
+			rules: {
+				'jest/no-disabled-tests': 'warn',
+				'jest/no-focused-tests': 'error',
+				'jest/no-identical-title': 'error',
+				'jest/prefer-to-have-length': 'warn',
+				'jest/valid-expect': 'error',
+				'max-nested-callbacks': ['error', 3]
+			}
+		}
+	],
 	parserOptions: {
-		ecmaVersion: 2020
+		ecmaVersion: 2022
 	},
 	rules: {
+		complexity: ['error', 4],
+		'max-depth': ['error', 2],
+		'max-nested-callbacks': ['error', 2],
 		'node/exports-style': ['error', 'module.exports'],
 		'node/file-extension-in-import': ['error', 'always'],
 		'node/no-unpublished-import': 'off',
@@ -20,20 +46,9 @@ module.exports = {
 		'node/prefer-promises/dns': 'error',
 		'node/prefer-promises/fs': 'error'
 	},
-	overrides: [
-		{
-			files: ['**/*.test.js'],
-			env: {
-				jest: true
-			},
-			extends: ['plugin:jest/recommended'],
-			rules: {
-				'jest/no-disabled-tests': 'warn',
-				'jest/no-focused-tests': 'error',
-				'jest/no-identical-title': 'error',
-				'jest/prefer-to-have-length': 'warn',
-				'jest/valid-expect': 'error'
-			}
+	settings: {
+		node: {
+			tryExtensions: ['.cjs', '.js', '.json', '.mjs']
 		}
-	]
+	}
 };

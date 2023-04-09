@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
+    "checkJs": true,
+    "module": "ES2022",
+    "moduleResolution": "Node",
+    "strict": true,
+    "target": "ES2022"
+  },
+  "exclude": ["coverage", "public"],
+  "include": ["**/*"]
+}
