@@ -1,6 +1,6 @@
 # 🪞📰 moc-tod-tf
 
-[![CircleCI](https://circleci.com/gh/leafrogers/moc-tod-tf/tree/main.svg?style=svg&circle-token=1b7636f0004ad8bcdff1441f41e72898f8851e63)](https://circleci.com/gh/leafrogers/moc-tod-tf/tree/main)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/leafrogers/moc-tod-tf/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/leafrogers/moc-tod-tf/tree/main)
 
 A backwards ft.com homepage.
 
