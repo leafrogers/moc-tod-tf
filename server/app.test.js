@@ -1,3 +1,4 @@
+// eslint-disable-next-line node/no-extraneous-import
 import { jest } from '@jest/globals';
 import nock from 'nock';
 import supertest from 'supertest';
@@ -14,6 +15,10 @@ describe(`The ${config.APP_FRIENDLY_NAME} app`, () => {
 	beforeAll(() => {
 		nock.disableNetConnect();
 		nock.enableNetConnect('127.0.0.1');
+	});
+
+	beforeEach(() => {
+		nock('https://www.ft.com').get('/').query(true).reply(200, 'Hello');
 	});
 
 	afterEach(() => {

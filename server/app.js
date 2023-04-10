@@ -1,8 +1,6 @@
 import express from 'express';
-import {
-	doNotCache,
-	security
-} from './middleware.js';
+import fetch from 'node-fetch';
+import { doNotCache, security } from './middleware.js';
 
 const app = express();
 
