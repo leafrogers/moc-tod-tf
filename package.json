@@ -4,7 +4,6 @@
   "description": "Backwards ft.com",
   "main": "server/init.js",
   "scripts": {
-    "build": "esbuild client/init.js --minify --bundle --outfile=public/js/init.js",
     "build:watch": "npm run -s build -- --watch",
     "jest": "node --experimental-vm-modules --no-warnings ./node_modules/.bin/jest",
     "lint": "npm run -s lint:syntax && npm run -s lint:types",
@@ -35,7 +34,6 @@
     "@types/jest": "^29.5.0",
     "@types/serve-favicon": "^2.5.3",
     "@types/supertest": "^2.0.12",
-    "esbuild": "^0.17.15",
     "eslint": "^8.38.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-jest": "^27.2.1",
